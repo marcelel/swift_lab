@@ -10,7 +10,6 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var minTemperature: UILabel!
     @IBOutlet weak var maxTemperature: UILabel!
@@ -31,6 +30,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = cityName
         fetchData()
         prevButton.isEnabled = false
     }
@@ -71,7 +71,6 @@ class DetailViewController: UIViewController {
     
     func updateView() {
         let info = self.city.consolidatedWeather[dayCounter]
-        cityNameLabel.text = cityName
         date.text = info.applicableDate
         minTemperature.text = String(format: "%.3f", info.minTemp) + " C"
         maxTemperature.text = String(format: "%.3f", info.maxTemp) + " C"

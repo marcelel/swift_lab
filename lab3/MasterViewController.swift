@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, InsertViewControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
     var cityNames = ["Warsaw", "London", "Berlin"]
@@ -19,11 +19,12 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Marcel Lekston"
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
-//
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-//        navigationItem.rightBarButtonItem = addButton
+
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+        navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -39,12 +40,10 @@ class MasterViewController: UITableViewController {
         super.viewWillAppear(animated)
     }
 
-//    @objc
-//    func insertNewObject(_ sender: Any) {
-//        cities.insert(CityCell(), at: 0)
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        tableView.insertRows(at: [indexPath], with: .automatic)
-//    }
+    @objc
+    func insertNewObject(_ sender: Any) {
+        performSegue(withIdentifier: "insertNewCity", sender: nil)
+    }
 
     // MARK: - Segues
 
@@ -59,6 +58,9 @@ class MasterViewController: UITableViewController {
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        } else if segue.identifier == "insertNewCity" {
+            let controller = segue.destination as! InsertViewController
+            controller.delegate = self
         }
     }
 
@@ -134,6 +136,11 @@ class MasterViewController: UITableViewController {
                 print(error)
             }
         }).resume()
+    }
+
+    func insertNewCity(cityName: String) {
+        cityNames.append(cityName);
+        fetchCityExtendedInfoByName(cityName: cityName);
     }
 }
 
