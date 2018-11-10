@@ -144,14 +144,21 @@
                                         <rect key="frame" x="0.0" y="527.5" width="375" height="75.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhB-5c-gN0">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="75.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="75.5"/>
                                                 <state key="normal" title="Prev"/>
                                                 <connections>
                                                     <action selector="prevButtonClicked:" destination="JEX-9P-axG" eventType="touchUpInside" id="fsJ-4Q-9yM"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qea-8U-SWy">
+                                                <rect key="frame" x="125" y="0.0" width="125" height="75.5"/>
+                                                <state key="normal" title="Map"/>
+                                                <connections>
+                                                    <segue destination="AcI-6f-hd0" kind="showDetail" id="WdS-K9-u2A"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aH-iO-hbc">
-                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="75.5"/>
+                                                <rect key="frame" x="250" y="0.0" width="125" height="75.5"/>
                                                 <state key="normal" title="Next"/>
                                                 <connections>
                                                     <action selector="nextButtonClicked:" destination="JEX-9P-axG" eventType="touchUpInside" id="y0f-u3-Tbs"/>
@@ -279,8 +286,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mBB-V3-4NM">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpA-P7-igX">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="151"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ULt-TN-OGs">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
+                                        <rect key="frame" x="0.0" y="151" width="375" height="150.5"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -289,10 +302,10 @@
                                         </connections>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="T2y-rP-Oou">
-                                        <rect key="frame" x="0.0" y="201" width="375" height="201"/>
+                                        <rect key="frame" x="0.0" y="301.5" width="375" height="151"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDu-fD-deG">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="201"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="151"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
                                                     <action selector="cancel:" destination="zui-0A-0PS" eventType="touchUpInside" id="b9K-u7-zeH"/>
@@ -300,7 +313,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGa-3a-Fdl">
-                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="201"/>
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="151"/>
                                                 <state key="normal" title="Apply"/>
                                                 <connections>
                                                     <action selector="apply:" destination="zui-0A-0PS" eventType="touchUpInside" id="a15-H8-2gY"/>
@@ -308,13 +321,11 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.94999999999999996"/>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="09c-GW-4V8">
-                                        <rect key="frame" x="0.0" y="402" width="375" height="201"/>
+                                        <rect key="frame" x="0.0" y="452.5" width="375" height="150.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="375" id="Wd5-5v-7Dj"/>
-                                        </constraints>
                                     </tableView>
                                 </subviews>
                                 <constraints>
@@ -335,6 +346,7 @@
                         <viewLayoutGuide key="safeArea" id="ABV-DM-8uq"/>
                     </view>
                     <connections>
+                        <outlet property="currentLocation" destination="DpA-P7-igX" id="ajd-i2-ybL"/>
                         <outlet property="displayCityNames" destination="09c-GW-4V8" id="hQD-sk-FPm"/>
                         <outlet property="insertCityName" destination="ULt-TN-OGs" id="yAP-Gb-bpe"/>
                     </connections>
@@ -343,6 +355,35 @@
                 <exit id="udZ-lB-zbY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1402.4000000000001" y="-485.30734632683664"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="0WH-N9-o5H">
+            <objects>
+                <viewController id="AcI-6f-hd0" customClass="MapViewController" customModule="lab3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a9j-Rm-HmX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lly-TP-jsw">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7eY-RF-fNk" firstAttribute="trailing" secondItem="Lly-TP-jsw" secondAttribute="trailing" id="LyN-Zi-VhU"/>
+                            <constraint firstItem="7eY-RF-fNk" firstAttribute="bottom" secondItem="Lly-TP-jsw" secondAttribute="bottom" id="aMh-TL-981"/>
+                            <constraint firstItem="Lly-TP-jsw" firstAttribute="leading" secondItem="7eY-RF-fNk" secondAttribute="leading" id="c1E-aI-U1f"/>
+                            <constraint firstItem="Lly-TP-jsw" firstAttribute="top" secondItem="7eY-RF-fNk" secondAttribute="top" id="eUB-zb-i8e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7eY-RF-fNk"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="Lly-TP-jsw" id="8wz-PB-9LG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TDW-jv-ki7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1471" y="206"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">

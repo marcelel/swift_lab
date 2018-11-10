@@ -44,6 +44,9 @@ class DetailViewController: UIViewController {
         updateView()
     }
     
+    @IBAction func mapClicked(_ sender: Any) {
+    }
+    
     @IBAction func nextButtonClicked(_ sender: Any) {
         dayCounter += 1
         if (dayCounter == 5) {
@@ -51,6 +54,11 @@ class DetailViewController: UIViewController {
         }
         prevButton.isEnabled = true
         updateView()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let mapViewController = segue.destination as! MapViewController
+        mapViewController.cityName = self.cityName
     }
     
     func fetchData() {
@@ -79,27 +87,5 @@ class DetailViewController: UIViewController {
         pressure.text = String(format: "%.3f", info.airPressure) + " hPa"
         imageView.image = try! UIImage(data: Data(contentsOf: URL(string: "https://www.metaweather.com/static/img/weather/png/\(info.weatherStateAbbr).png")!))
     }
-    
-//    func configureView() {
-//        // Update the user interface for the detail item.
-//        if let detail = detailItem {
-//            if let label = detailDescriptionLabel {
-//                label.text = detail.description
-//            }
-//        }
-//    }
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view, typically from a nib.
-//        configureView()
-//    }
-
-//    var detailItem: NSDate? {
-//        didSet {
-//            // Update the view.
-//            configureView()
-//        }
-//    }
 }
 

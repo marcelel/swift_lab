@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A523886B2196301200022186 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523886A2196301200022186 /* MapViewController.swift */; };
+		A523886D2197635D00022186 /* BingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523886C2197635D00022186 /* BingResponse.swift */; };
 		A5A9E385217BBD6F00334B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9E384217BBD6F00334B66 /* AppDelegate.swift */; };
 		A5A9E387217BBD6F00334B66 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9E386217BBD6F00334B66 /* MasterViewController.swift */; };
 		A5A9E389217BBD6F00334B66 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9E388217BBD6F00334B66 /* DetailViewController.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A523886A2196301200022186 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A523886C2197635D00022186 /* BingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingResponse.swift; sourceTree = "<group>"; };
 		A5A9E381217BBD6F00334B66 /* lab3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lab3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A9E384217BBD6F00334B66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5A9E386217BBD6F00334B66 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				A5B12E022194F473002A8106 /* Main.storyboard */,
+				A523886C2197635D00022186 /* BingResponse.swift */,
 				A5A9E384217BBD6F00334B66 /* AppDelegate.swift */,
 				A5A9E386217BBD6F00334B66 /* MasterViewController.swift */,
 				A5B12E042194F8B9002A8106 /* InsertViewController.swift */,
@@ -118,6 +123,7 @@
 				A5A9E3B4217BD2AB00334B66 /* CityCell.swift */,
 				A5B12DFE2194C2C3002A8106 /* CityBasicInfo.swift */,
 				A5B12E002194CD3F002A8106 /* CityExtendedInfo.swift */,
+				A523886A2196301200022186 /* MapViewController.swift */,
 			);
 			path = lab3;
 			sourceTree = "<group>";
@@ -273,11 +279,13 @@
 			files = (
 				A5A9E389217BBD6F00334B66 /* DetailViewController.swift in Sources */,
 				A5A9E387217BBD6F00334B66 /* MasterViewController.swift in Sources */,
+				A523886D2197635D00022186 /* BingResponse.swift in Sources */,
 				A5A9E3B5217BD2AB00334B66 /* CityCell.swift in Sources */,
 				A5B12DFF2194C2C3002A8106 /* CityBasicInfo.swift in Sources */,
 				A5A9E385217BBD6F00334B66 /* AppDelegate.swift in Sources */,
 				A5B12E012194CD3F002A8106 /* CityExtendedInfo.swift in Sources */,
 				A5B12E052194F8B9002A8106 /* InsertViewController.swift in Sources */,
+				A523886B2196301200022186 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

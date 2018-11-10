@@ -11,8 +11,7 @@ import UIKit
 class MasterViewController: UITableViewController, InsertViewControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
-    var cityNames = ["Warsaw", "London", "Berlin"]
-    var objects = [Any]()
+    var cityNames = ["Warsaw", "London", "Paris"]
     let cityBasicInfoUrl: String = "https://www.metaweather.com/api/location/search/?query="
     let cityExtendedInfoUrl: String = "https://www.metaweather.com/api/location/"
     var cities = [CityCell](){didSet{tableView.reloadData()}}
@@ -20,8 +19,6 @@ class MasterViewController: UITableViewController, InsertViewControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Marcel Lekston"
-        // Do any additional setup after loading the view, typically from a nib.
-        navigationItem.leftBarButtonItem = editButtonItem
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         navigationItem.rightBarButtonItem = addButton
@@ -30,7 +27,6 @@ class MasterViewController: UITableViewController, InsertViewControllerDelegate 
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         for city in cityNames {
-            
             self.fetchCityExtendedInfoByName(cityName: city)
         }
     }
@@ -45,26 +41,20 @@ class MasterViewController: UITableViewController, InsertViewControllerDelegate 
         performSegue(withIdentifier: "insertNewCity", sender: nil)
     }
 
-    // MARK: - Segues
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-//                let object = objects[indexPath.row] as! NSDate
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-//                controller.detailItem = object
-                controller.cityName = cities[indexPath.row].name
-                controller.cityId = cities[indexPath.row].id
-                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
+                let detailViewController = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+                detailViewController.cityName = cities[indexPath.row].name
+                detailViewController.cityId = cities[indexPath.row].id
+                detailViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                detailViewController.navigationItem.leftItemsSupplementBackButton = true
             }
         } else if segue.identifier == "insertNewCity" {
             let controller = segue.destination as! InsertViewController
             controller.delegate = self
         }
     }
-
-    // MARK: - Table View
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -85,24 +75,12 @@ class MasterViewController: UITableViewController, InsertViewControllerDelegate 
         let temperature = cell.viewWithTag(3) as! UILabel
         temperature.text = city.temperature
         
-//        let object = objects[indexPath.row] as! NSDate
-//        cell.textLabel!.text = object.description
         return cell
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            objects.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-//        }
-//    }
 
     func fetchCityExtendedInfoByName(cityName: String) {
         let url = URL(string: self.cityBasicInfoUrl + cityName)!
