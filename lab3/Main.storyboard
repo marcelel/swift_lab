@@ -305,15 +305,22 @@
                                         <rect key="frame" x="0.0" y="301.5" width="375" height="151"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDu-fD-deG">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="151"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="151"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
                                                     <action selector="cancel:" destination="zui-0A-0PS" eventType="touchUpInside" id="b9K-u7-zeH"/>
                                                     <action selector="cancel:" destination="udZ-lB-zbY" eventType="touchUpInside" id="dhi-bj-kiH"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6E-kC-dBy">
+                                                <rect key="frame" x="125" y="0.0" width="125" height="151"/>
+                                                <state key="normal" title="Current location"/>
+                                                <connections>
+                                                    <action selector="currentLocationTapped:" destination="zui-0A-0PS" eventType="touchUpInside" id="fpH-Hz-Mhc"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGa-3a-Fdl">
-                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="151"/>
+                                                <rect key="frame" x="250" y="0.0" width="125" height="151"/>
                                                 <state key="normal" title="Apply"/>
                                                 <connections>
                                                     <action selector="apply:" destination="zui-0A-0PS" eventType="touchUpInside" id="a15-H8-2gY"/>

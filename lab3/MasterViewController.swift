@@ -83,7 +83,7 @@ class MasterViewController: UITableViewController, InsertViewControllerDelegate 
     }
 
     func fetchCityExtendedInfoByName(cityName: String) {
-        let url = URL(string: self.cityBasicInfoUrl + cityName)!
+        let url = URL(string: (self.cityBasicInfoUrl + cityName).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         URLSession(configuration: .default).dataTask(with: url, completionHandler: { (data, response, error) in
             guard let newData = data else { return }
             let decoder = JSONDecoder()

@@ -20,15 +20,37 @@ class InsertViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var displayCityNames: UITableView!
     
     let locationManager = CLLocationManager()
-    var bingUri = "https://dev.virtualearth.net/REST/v1/Locations/%5f,%5f?key=AnXCIDfyDmdeWhsmlUUIos9mDWM2bMqFFDw8r_9VZUeqXk11LuWOy7dE357jvjqx"
+    let bingUri = "https://dev.virtualearth.net/REST/v1/Locations/%5f,%5f?key=AnXCIDfyDmdeWhsmlUUIos9mDWM2bMqFFDw8r_9VZUeqXk11LuWOy7dE357jvjqx"
+    let citiesByCordinatesUrl: String = "https://www.metaweather.com/api/location/search/?lattlong=%2f,%2f"
+    let cityBasicInfoUrl: String = "https://www.metaweather.com/api/location/search/?query="
     
     weak var delegate: InsertViewControllerDelegate!
     
-    let cityBasicInfoUrl: String = "https://www.metaweather.com/api/location/search/?query="
+    var coordinates: CLLocationCoordinate2D!
     var cities: [CityBasicInfo] = []{didSet{displayCityNames.reloadData()}}
     
     @IBAction func cancel(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func currentLocationTapped(_ sender: Any) {
+        let uriWithCoordinates = String(format: self.citiesByCordinatesUrl, self.coordinates.latitude, self.coordinates.longitude)
+        let url = URL(string: uriWithCoordinates)!
+        URLSession(configuration: .default).dataTask(with: url, completionHandler: { (data, response, error) in
+            guard let newData = data else { return }
+            let decoder = JSONDecoder()
+            do {
+                let fetchedCitiesWithDistance = (try decoder.decode([CityDistanceBasicInfo].self, from: newData))
+                let fetchedCities = (try decoder.decode([CityBasicInfo].self, from: newData))
+                if fetchedCitiesWithDistance[0].distance < 10000 {
+                    self.cities = [fetchedCities[0]]
+                } else {
+                    self.cities = fetchedCities
+                }
+            } catch {
+                print(error)
+            }
+        }).resume()
     }
     
     @IBAction func apply(_ sender: Any) {
@@ -77,21 +99,21 @@ class InsertViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        findCurrentLocationName(coordinates: locations[0].coordinate)
+        self.coordinates = locations[0].coordinate
+        findCurrentLocationName()
     }
     
-    func findCurrentLocationName(coordinates: CLLocationCoordinate2D) {
-        let bingUriWithCoordinates = String(format: self.bingUri, coordinates.latitude, coordinates.longitude)
-//        let bingUriWithCoordinates = "https://dev.virtualearth.net/REST/v1/Locations/47.64054,-122.12934?key=AnXCIDfyDmdeWhsmlUUIos9mDWM2bMqFFDw8r_9VZUeqXk11LuWOy7dE357jvjqx"
+    func findCurrentLocationName() {
+        let bingUriWithCoordinates = String(format: self.bingUri, self.coordinates.latitude, self.coordinates.longitude)
         let url = URL(string: bingUriWithCoordinates)!
         URLSession(configuration: .default).dataTask(with: url, completionHandler: { (data, response, error) in
             guard let newData = data else { return }
             let decoder = JSONDecoder()
             do {
                 let bingResponse = try decoder.decode(BingResponse.self, from: newData)
-                let currentLocationName = bingResponse.resourceSets[0].resources[0].name
+                let currentLocation = bingResponse.resourceSets[0].resources[0].name
                 DispatchQueue.main.async {
-                    self.updateCurrentLocation(cityName: currentLocationName)
+                    self.updateCurrentLocation(currentLocation: currentLocation)
                 }
             } catch {
                 print(error)
@@ -99,7 +121,7 @@ class InsertViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }).resume()
     }
     
-    func updateCurrentLocation(cityName: String) {
-        self.currentLocation.text = "Current location: " + cityName
+    func updateCurrentLocation(currentLocation: String) {
+        self.currentLocation.text = "Current location: " + currentLocation
     }
 }
